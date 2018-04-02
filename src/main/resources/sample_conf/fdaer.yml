@@ -1,0 +1,44 @@
+data_source: fdaer
+
+csvs:
+    method:
+        action: input_directory
+        directory: "C:\\Users\\Mihalis\\Desktop\\ftp\\urban\\enrich\\nn\\csvs\\csvs"
+
+output:
+    method:
+        action: directory
+        directory: "C:\\Users\\Mihalis\\Desktop\\ftp\\urban\\enrich\\nn\\csvs\\xmls"
+
+url_pattern: https://www.accessdata.fda.gov/scripts/ires/index.cfm?Product={id}
+
+type: notification
+
+has_header: true
+
+mappings:
+    id: 2
+    supplier_name: 4
+    supplier_address: 5
+    supplier_city: 7
+    supplier_country: 10
+    notification_type: 11
+    brand: 16
+    brand_distribution: 13
+    brand_quantity: 17
+    hazard: 18
+    date: 19
+
+
+post_process:
+    type:
+        action: if_replace
+        contains:
+            voluntary: "information for attention"
+            mandated: "alert"
+    title:
+        action: concat
+        parts:
+            - "4"
+            - "recalls"
+            - "16"
