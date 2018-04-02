@@ -11,6 +11,8 @@ public final class Configuration {
 
     private String data_source;
 
+    private boolean has_header;
+
     private Csvs csvs;
 
     private Output output;
@@ -20,6 +22,24 @@ public final class Configuration {
     private String type;
 
     private Map<String, Integer> mappings = new HashMap<String, Integer>();
+
+    private Map<String, Method> post_process = new HashMap<String, Method>();
+
+    public Map<String, Method> getPost_process() {
+        return post_process;
+    }
+
+    public void setPost_process(Map<String, Method> post_process) {
+        this.post_process = post_process;
+    }
+
+    public boolean isHas_header() {
+        return has_header;
+    }
+
+    public void setHas_header(boolean has_header) {
+        this.has_header = has_header;
+    }
 
     public Map<String, Integer> getMappings() {
         return mappings;
@@ -35,14 +55,6 @@ public final class Configuration {
 
     public void setData_source(String data_source) {
         this.data_source = data_source;
-    }
-
-    public Csvs getCsvss() {
-        return csvs;
-    }
-
-    public void setCsvs(Csvs htmls) {
-        this.csvs = csvs;
     }
 
     public Output getOutput() {
@@ -67,5 +79,13 @@ public final class Configuration {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Csvs getCsvs() {
+        return csvs;
+    }
+
+    public void setCsvs(Csvs csvs) {
+        this.csvs = csvs;
     }
 }

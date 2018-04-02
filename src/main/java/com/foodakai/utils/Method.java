@@ -1,7 +1,9 @@
 package com.foodakai.utils;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class Method {
 
@@ -16,6 +18,16 @@ public final class Method {
     private String directory;
 
     public Method method;
+
+    private Map<String, String> contains = new HashMap<String, String>();
+
+    public Map<String, String> getContains() {
+        return contains;
+    }
+
+    public void setContains(Map<String, String> contains) {
+        this.contains = contains;
+    }
 
     public int getKeep() {
         return keep;
