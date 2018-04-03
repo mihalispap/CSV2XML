@@ -54,18 +54,18 @@ public class FoodakaiObject {
             this.processFSA(name, value);
         }
     }
-    
+
     private void writeSupplierInfo(PrintWriter writer) {
-    	int i = 0;
-    	while (i < this.suppliers_info.size()) {
-    		String line = "<supplier_info>";
-    		writer.print(line);
-    		line = "<name><![CDATA[" + this.suppliers_info.get((int)i).name + "]]></name>";
-    		line = String.valueOf(line) + "<level><![CDATA[" + this.suppliers_info.get((int)i).level + "]]></level>";
-    		line = String.valueOf(line) + "</supplier_info>";
-    		writer.print(line);
-    		++i;
-    	}
+        int i = 0;
+        while (i < this.suppliers_info.size()) {
+            String line = "<supplier_info>";
+            writer.print(line);
+            line = "<name><![CDATA[" + this.suppliers_info.get((int)i).name + "]]></name>";
+            line = String.valueOf(line) + "<level><![CDATA[" + this.suppliers_info.get((int)i).level + "]]></level>";
+            line = String.valueOf(line) + "</supplier_info>";
+            writer.print(line);
+            ++i;
+        }
     }
 
     private void writeBrandInfo(PrintWriter writer) {
@@ -344,10 +344,10 @@ public class FoodakaiObject {
                 this.potential_hazard = "";
             }
             try {
-            	this.original_url = element.getElementsByTagName("original_source").item(0).getTextContent().trim();
+                this.original_url = element.getElementsByTagName("original_source").item(0).getTextContent().trim();
             }
             catch (Exception e) {
-            	this.original_url = "";
+                this.original_url = "";
             }
             try {
                 this.potential_origin = element.getElementsByTagName("potential_origin").item(0).getTextContent().trim();
@@ -385,10 +385,10 @@ public class FoodakaiObject {
                     supplier.address = "";
                 }
                 try {
-                	supplier.city = ((Element)n).getElementsByTagName("city").item(0).getTextContent().trim();
+                    supplier.city = ((Element)n).getElementsByTagName("city").item(0).getTextContent().trim();
                 }
                 catch (Exception e) {
-                	supplier.city = "";
+                    supplier.city = "";
                 }
                 try {
                     supplier.country = ((Element)n).getElementsByTagName("country").item(0).getTextContent().trim();
@@ -453,6 +453,31 @@ public class FoodakaiObject {
                     addition.addition_comments = "";
                 }
                 this.additions.add(addition);
+                ++i;
+            }
+            i = 0;
+            while (i < element.getElementsByTagName("brand_info").getLength()) {
+                FoodakaiBrandInfo brandinfo = new FoodakaiBrandInfo();
+                n = element.getElementsByTagName("brand_info").item(i);
+                try {
+                    brandinfo.name = ((Element)n).getElementsByTagName("name").item(0).getTextContent().trim();
+                }
+                catch (Exception e) {
+                    brandinfo.name = "";
+                }
+                try {
+                    brandinfo.brand_distribution = ((Element)n).getElementsByTagName("brand_distribution").item(0).getTextContent().trim();
+                }
+                catch (Exception e) {
+                    brandinfo.brand_distribution = "";
+                }
+                try {
+                    brandinfo.brand_quantity = ((Element)n).getElementsByTagName("brand_quantity").item(0).getTextContent().trim();
+                }
+                catch (Exception e) {
+                    brandinfo.brand_quantity = "";
+                }
+                this.brands_info.add(brandinfo);
                 ++i;
             }
             i = 0;
@@ -568,12 +593,12 @@ public class FoodakaiObject {
     }
 
     public boolean hasProduct(String product) {
-        
-    	if(this.details.product.equals(product))
-    		return true;
+
+        if(this.details.product.equals(product))
+            return true;
         return false;
     }
-    
+
     public void addProductAnnotation(Annotation annotation)
     {
         this.details.product=annotation.value;
