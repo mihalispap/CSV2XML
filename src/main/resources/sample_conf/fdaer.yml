@@ -3,12 +3,12 @@ data_source: fdaer
 csvs:
     method:
         action: input_directory
-        directory: "C:\\Users\\Mihalis\\Desktop\\ftp\\urban\\enrich\\nn\\csvs\\csvs"
+        directory: "/mnt/data_disk/foodakai/fetch_new/source/fdaer/csvs"
 
 output:
     method:
         action: directory
-        directory: "C:\\Users\\Mihalis\\Desktop\\ftp\\urban\\enrich\\nn\\csvs\\xmls"
+        directory: "/mnt/data_disk/foodakai/fetch_new/source/fdaer/xmls"
 
 url_pattern: https://www.accessdata.fda.gov/scripts/ires/index.cfm?Product={id}
 
