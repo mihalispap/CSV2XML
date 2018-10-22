@@ -152,6 +152,9 @@ public class Executor {
                         case "title":
                             curr_value = ((FoodakaiObject) fdk_object).details.title;
                             break;
+                        case "id":
+                            curr_value = ((FoodakaiObject) fdk_object).details.id;
+                            break;
                         default:
                             break;
                     }
